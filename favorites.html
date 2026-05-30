@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>我的收藏 - NSCA-CPT</title>
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/knowledge.css">
+<style>
+  .fav-item { display: flex; align-items: center; gap: 12px; padding: 14px 18px; margin-bottom: 6px; background: var(--card-bg); border-radius: var(--radius-sm); border: 1px solid var(--border-light); transition: all 0.15s; }
+  .fav-item:hover { border-color: var(--accent); box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .fav-item .fav-icon { font-size: 1.1rem; flex-shrink: 0; }
+  .fav-item .fav-info { flex: 1; min-width: 0; }
+  .fav-item .fav-title { font-weight: 600; color: var(--text); text-decoration: none; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .fav-item .fav-title:hover { color: var(--accent); text-decoration: none; }
+  .fav-item .fav-date { font-size: 0.78rem; color: var(--text-muted); }
+  .fav-item .fav-remove { flex-shrink: 0; background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 1.1rem; padding: 4px 8px; transition: color 0.15s; }
+  .fav-item .fav-remove:hover { color: var(--danger); }
+</style>
+</head>
+<body>
+<div id="top-nav-container"></div>
+
+<div class="page-container">
+  <div class="card">
+    <h2>⭐ 我的收藏</h2>
+    <p style="color:var(--text-muted);margin-bottom:16px;">你在知识库中收藏的章节汇总</p>
+    <div id="fav-list"></div>
+  </div>
+</div>
+
+<script src="js/shared.js"></script>
+<script src="data/chapters-index.js"></script>
+<script src="js/favorites-page.js"></script>
+<script>document.addEventListener('DOMContentLoaded', () => { Shared.init('favorites'); FavoritesPage.init(); });</script>
+</body>
+</html>
