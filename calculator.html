@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>训练计算器 - NSCA-CPT</title>
+<link rel="stylesheet" href="css/main.css">
+<style>
+  .calc-tabs { display: flex; gap: 4px; margin-bottom: 20px; }
+  .calc-tab { padding: 10px 20px; border: 2px solid var(--border); border-radius: 8px; background: var(--card-bg); font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.15s; color: var(--text); }
+  .calc-tab.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .calc-tab:hover:not(.active) { border-color: var(--accent); }
+  .calc-panel { display: none; }
+  .calc-panel.active { display: block; }
+  .fg { margin-bottom: 16px; }
+  .fg label { display: block; font-weight: 600; margin-bottom: 6px; color: var(--text); font-size: 0.9rem; }
+  .fg input, .fg select { width: 100%; max-width: 400px; padding: 10px 14px; border: 2px solid var(--border); border-radius: 8px; font-size: 0.95rem; background: var(--card-bg); color: var(--text); }
+  .fg input:focus, .fg select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-light); }
+  .fg-error { color: var(--danger); font-size: 0.85rem; margin-top: 4px; display: none; }
+  .fg-error.show { display: block; }
+  .calc-result { margin-top: 16px; padding: 18px; background: var(--info-bg); border-radius: 8px; display: none; }
+  .calc-result.show { display: block; }
+  .calc-result .rv { font-size: 2rem; font-weight: 800; color: var(--accent); }
+  .calc-result .rl { font-size: 0.9rem; color: var(--text-muted); margin-top: 4px; }
+  .hr-zone-tag { display: inline-block; padding: 4px 14px; border-radius: 20px; font-size: 0.82rem; font-weight: 600; margin-top: 8px; color: #fff; }
+</style>
+</head>
+<body>
+<div id="top-nav-container"></div>
+
+<div class="page-container">
+  <div class="card">
+    <h2>🔢 训练计算器</h2>
+    <div class="calc-tabs">
+      <button class="calc-tab active" data-calc="rm">1RM 计算器</button>
+      <button class="calc-tab" data-calc="hr">目标心率计算器</button>
+    </div>
+
+    <!-- 1RM Calculator -->
+    <div class="calc-panel active" id="calc-rm">
+      <div class="fg"><label for="rm-w">使用的重量 (kg)</label><input type="number" id="rm-w" placeholder="例如: 60" min="0.5" step="0.5"></div>
+      <div class="fg"><label for="rm-r">最多重复次数</label><input type="number" id="rm-r" placeholder="例如: 8" min="1"></div>
+      <div class="fg-error" id="rm-err"></div>
+      <button class="btn btn-primary" id="rm-go">计算 1RM</button>
+      <div class="calc-result" id="rm-res"><div class="rv" id="rm-val"></div><div class="rl">估算 1RM (Epley 公式)</div></div>
+    </div>
+
+    <!-- Target HR Calculator -->
+    <div class="calc-panel" id="calc-hr">
+      <div class="fg"><label for="hr-age">年龄</label><input type="number" id="hr-age" placeholder="例如: 25" min="1" max="100"></div>
+      <div class="fg"><label for="hr-int">强度百分比</label>
+        <select id="hr-int"><option value="">-- 请选择 --</option><option value="50-60">50%-60%（热身/恢复）</option><option value="60-70">60%-70%（燃脂/有氧）</option><option value="70-80">70%-80%（心肺强化）</option><option value="80-90">80%-90%（高强度训练）</option></select></div>
+      <div class="fg-error" id="hr-err"></div>
+      <button class="btn btn-primary" id="hr-go">计算目标心率</button>
+      <div class="calc-result" id="hr-res"><div class="rv" id="hr-val"></div><div class="rl" id="hr-label"></div><span class="hr-zone-tag" id="hr-zone"></span></div>
+    </div>
+  </div>
+</div>
+
+<script src="js/shared.js"></script>
+<script src="js/calculator.js"></script>
+<script>document.addEventListener('DOMContentLoaded', () => { Shared.init('calculator'); Calculator.init(); });</script>
+</body>
+</html>

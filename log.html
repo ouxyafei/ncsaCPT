@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>学习日志 - NSCA-CPT</title>
+<link rel="stylesheet" href="css/main.css">
+<style>
+  .log-form { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 24px; }
+  .log-form .fg { margin-bottom: 0; flex: 1; min-width: 160px; }
+  .log-form input { width: 100%; }
+  .log-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border-light); font-size: 0.9rem; }
+  .log-item:last-child { border-bottom: none; }
+</style>
+</head>
+<body>
+<div id="top-nav-container"></div>
+
+<div class="page-container">
+  <div class="card">
+    <h2>📊 学习日志</h2>
+    <div style="margin-bottom:20px;"><h3>📝 记录学习时长</h3>
+      <div class="log-form">
+        <div class="fg"><label for="study-min">学习时长（分钟）</label><input type="number" id="study-min" placeholder="例如: 45" min="1"></div>
+        <button class="btn btn-primary" id="log-save">保存记录</button>
+      </div>
+    </div>
+    <div><h3>📋 最近记录</h3>
+      <div id="log-list"></div>
+      <div class="empty-state" id="log-empty" style="display:none;">暂无记录。完成测验或手动记录学习时长后会显示在这里。</div>
+      <div style="margin-top:12px;"><button class="btn btn-danger" id="log-clear" style="font-size:0.82rem;padding:6px 14px;">清除所有记录</button></div>
+    </div>
+  </div>
+</div>
+
+<script src="js/shared.js"></script>
+<script src="js/log.js"></script>
+<script>document.addEventListener('DOMContentLoaded', () => { Shared.init('log'); LogPage.init(); });</script>
+</body>
+</html>

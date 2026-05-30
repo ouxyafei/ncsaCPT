@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>动作库 - NSCA-CPT</title>
+<link rel="stylesheet" href="css/main.css">
+<style>
+  .ex-filter { margin-bottom: 18px; }
+  .ex-filter select { padding: 10px 16px; border: 2px solid var(--border); border-radius: 8px; font-size: 0.9rem; background: var(--card-bg); color: var(--text); max-width: 260px; }
+  .ex-grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+  .ex-card { background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--card-shadow); overflow: hidden; border: 1px solid var(--border-light); }
+  .ex-img { height: 130px; display: flex; justify-content: center; align-items: center; font-weight: 700; color: #fff; text-align: center; padding: 16px; font-size: 1rem; }
+  .ex-info { padding: 16px; }
+  .ex-info h4 { margin-bottom: 8px; }
+  .ex-info ul { list-style: none; font-size: 0.85rem; color: var(--text-secondary); }
+  .ex-info ul li { margin-bottom: 4px; padding-left: 14px; position: relative; line-height: 1.5; }
+  .ex-info ul li::before { content: "•"; position: absolute; left: 0; color: var(--accent); }
+</style>
+</head>
+<body>
+<div id="top-nav-container"></div>
+
+<div class="page-container">
+  <div class="card">
+    <h2>🏋️ 动作库</h2>
+    <p style="color:var(--text-muted);margin-bottom:12px;">按肌群筛选，查看14个常见训练动作的指导要点</p>
+    <div class="ex-filter"><select id="ex-filter"><option value="all">全部肌群</option><option value="胸部">胸部</option><option value="背部">背部</option><option value="腿部">腿部</option><option value="肩部">肩部</option><option value="核心">核心</option><option value="手臂">手臂</option></select></div>
+    <div class="ex-grid" id="ex-grid"></div>
+  </div>
+</div>
+
+<script src="js/shared.js"></script>
+<script src="js/exercises.js"></script>
+<script>document.addEventListener('DOMContentLoaded', () => { Shared.init('exercises'); Exercises.init(); });</script>
+</body>
+</html>
