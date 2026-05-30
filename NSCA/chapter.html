@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>章节详情 - NSCA-CPT</title>
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/knowledge.css">
+</head>
+<body>
+
+<!-- 导航栏占位 -->
+<div id="top-nav-container"></div>
+
+<!-- 主内容区 -->
+<div class="page-container">
+  <!-- 页头信息 -->
+  <div id="chapter-header" class="chapter-header"></div>
+
+  <!-- 收藏和操作按钮 -->
+  <div style="display:flex;gap:12px;align-items:center;margin-bottom:20px;flex-wrap:wrap;">
+    <button id="fav-btn" class="fav-btn-large">☆ 收藏本章</button>
+    <a href="index.html" class="btn btn-outline">← 返回知识库</a>
+  </div>
+
+  <!-- 知识点内容 -->
+  <div class="card" id="chapter-content">
+    <p style="color:var(--text-muted);text-align:center;padding:30px;">正在加载章节内容...</p>
+  </div>
+</div>
+
+<script src="js/shared.js"></script>
+<script src="data/chapters-index.js"></script>
+<script src="js/chapter-loader.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  Shared.init(null); // null = no nav link highlighted
+
+  // 加载并渲染章节内容
+  await ChapterLoader.renderChapterPage('chapter-content', 'chapter-header');
+
+  // 设置收藏按钮
+  const chapterId = ChapterLoader.getChapterIdFromURL();
+  const meta = ChapterLoader.getChapterMeta(chapterId);
+  if (meta) {
+    ChapterLoader.updateFavButton('fav-btn', chapterId, meta.title);
+    // 更新页面标题
+    document.title = meta.title + ' - NSCA-CPT';
+  }
+});
+</script>
+</body>
+</html>
